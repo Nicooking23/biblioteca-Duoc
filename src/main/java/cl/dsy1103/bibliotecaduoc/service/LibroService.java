@@ -65,21 +65,6 @@ public class LibroService {
     // Antes: recibía Libro. Ahora: recibe LibroRequestDTO.
     // Si el categoriaId no existe, lanza RuntimeException.
     // GlobalExceptionHandler la captura y devuelve 400.
-    public LibroResponseDTO guardar(LibroRequestDTO dto){
-        Categoria categoria = categoriaRepository
-                .findById(dto.getCategoriaId())
-                .orElseThrow(() -> new RuntimeException(
-                        "Categoría no encontrada con id: " + dto.getCategoriaId()));
-        Libro libro = new Libro(
-                null,
-                dto.getTitulo(),
-                dto.getIsbn(),
-                dto.getPrecio(),
-                categoria
-        );
-        return mapToDTO(libroRepository.save(libro));
-    }
-
 
 }
 
